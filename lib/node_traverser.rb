@@ -13,10 +13,7 @@ module NodeTraverser
       uniqueNodes[counter] << nodes unless uniqueNodes[counter].include?(nodes)
     end
 
-    #uniqueNodes = Array.new
-    #uniqueNodes << nodes unless uniqueNodes.include?(nodes)
-
-    puts "==================="
+    puts "\n==================="
     puts "working with node: " + nodes.object_id.to_s
     uniqueNodes[counter].each {|xx| puts "node in uniqueNodes: " + xx.object_id.to_s}
     nodes.listNodes.each do |node|
@@ -26,7 +23,6 @@ module NodeTraverser
         puts "counter: " + counter.to_s
         uniqueNodes[counter] << node
         calculateUniqueNodes(node,counter,uniqueNodes)
-        #calculateUniqueNodes(node)
       end
     end
     uniqueNodes[counter].length

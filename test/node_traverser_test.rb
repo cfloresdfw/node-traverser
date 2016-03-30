@@ -8,7 +8,7 @@ class NodeTraverserTest < Test::Unit::TestCase
     @nodeA = NodeTraverser::Node.new
     @nodeB = NodeTraverser::Node.new
     @nodeC = NodeTraverser::Node.new
-    #@nodeD = NodeTraverser::Node.new
+    @nodeD = NodeTraverser::Node.new
   end
 
   def teardown
@@ -33,9 +33,9 @@ class NodeTraverserTest < Test::Unit::TestCase
     nodeBB = NodeTraverser::Node.new
     nodeCC = NodeTraverser::Node.new
     nodeDD = NodeTraverser::Node.new
-    #nodeEE = NodeTraverser::Node.new
-    #nodeFF = NodeTraverser::Node.new
-    #nodeGG = NodeTraverser::Node.new
+    nodeEE = NodeTraverser::Node.new
+    nodeFF = NodeTraverser::Node.new
+    nodeGG = NodeTraverser::Node.new
 
     #create the first set of nodes using local variables
     nodeAA.addNodeToList(nodeBB)
@@ -94,26 +94,7 @@ class NodeTraverserTest < Test::Unit::TestCase
       i+=1
     end
 
-=begin
-    uniqueNodes[i] = Array.new([])
-    threads[i] = Thread.new{
-      NodeTraverser.calculateUniqueNodes(@nodeA,i,uniqueNodes[i])
-    }
-
-    i+=1
-
-    uniqueNodes[i] = Array.new([[]])
-    threads[i] = Thread.new{
-      NodeTraverser.calculateUniqueNodes(nodeAA,i,uniqueNodes[i])
-    }
-=end
-    puts "value of i: " + i.to_s
-
     threads.each{ |t| t.join }
-
-    for nodes in uniqueNodes
-      puts "hello there Nodes length: " + nodes.length.to_s unless nodes.nil?
-    end
 
     assert_equal(3,threads[0].value,"Calculation failed")
     assert_equal(4,threads[1].value,"Calculation failed")
