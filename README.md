@@ -22,8 +22,10 @@ Or install it yourself as:
 
 ## Usage
 
-1. Create a list of nodes using NodeTraverser::Node.new
-ie: aNode = NodeTraverser::Node.new
+1. Create a list of nodes using `NodeTraverser::Node.new`
+ie:
+
+    aNode = NodeTraverser::Node.new
 
 2. Connect them with other nodes via the addNodeToList() method
 
@@ -38,7 +40,7 @@ ie:
 
 3. Once the list of nodes is created, use `NodeTraverser.calculateUniqueNodes(aNodes)` to calculate the number of unique nodes
 
-see node_traverser_test.rb for more specifics.
+   see node_traverser_test.rb for more specifics.
 
 ## Development
 
