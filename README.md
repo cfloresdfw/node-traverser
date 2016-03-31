@@ -28,11 +28,11 @@ ie: aNode = NodeTraverser::Node.new
 2. Connect them with other nodes via the addNodeToList() method
 
 ie:
-aNode.addNodeToList(bNode)
-aNode.addNodeToList(cNode)
-bNode.addNodeToList(cNode)
-cNode.addNodeToList(dNode)
-dNode.addNodeToList(aNode)
+a) aNode.addNodeToList(bNode)
+b) aNode.addNodeToList(cNode)
+c) bNode.addNodeToList(cNode)
+d) cNode.addNodeToList(dNode)
+e) dNode.addNodeToList(aNode)
 ...
 
 3. Once the list of nodes is created, use NodeTraverser.calculateUniqueNodes(aNodes) to calculate the number of unique nodes

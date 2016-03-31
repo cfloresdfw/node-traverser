@@ -12,11 +12,11 @@ class NodeTraverserTest < Test::Unit::TestCase
   end
 
   def teardown
-
+    #empty for now
   end
 
   def test_number_nodes_with_circular_links
-    omit
+
     @nodeA.addNodeToList(@nodeB)
     @nodeA.addNodeToList(@nodeC)
     @nodeB.addNodeToList(@nodeD)
@@ -25,7 +25,7 @@ class NodeTraverserTest < Test::Unit::TestCase
     @nodeD.addNodeToList(@nodeA)
     @nodeD.addNodeToList(@nodeB)
 
-    assert_equal(4,NodeTraverser::Node.calculateUniqueNodes(@nodeA),"Calculation failed")
+    assert_equal(4,NodeTraverser.calculateUniqueNodes(@nodeA),"Calculation failed")
   end
 
   def test_number_nodes_with_threads
@@ -46,7 +46,7 @@ class NodeTraverserTest < Test::Unit::TestCase
     nodeCC.addNodeToList(nodeDD)
     nodeCC.addNodeToList(nodeAA)
     nodeCC.addNodeToList(nodeBB)
-=begin
+
     nodeDD.addNodeToList(nodeAA)
     nodeDD.addNodeToList(nodeBB)
     nodeDD.addNodeToList(nodeCC)
@@ -71,51 +71,46 @@ class NodeTraverserTest < Test::Unit::TestCase
     nodeGG.addNodeToList(nodeDD)
     nodeGG.addNodeToList(nodeEE)
     nodeGG.addNodeToList(nodeFF)
-=end
 
     #second set of nodes using instance variables for the test
 
     @nodeA.addNodeToList(@nodeB)
     @nodeA.addNodeToList(@nodeC)
-=begin
     @nodeB.addNodeToList(@nodeD)
     @nodeC.addNodeToList(@nodeD)
     @nodeC.addNodeToList(@nodeB)
     @nodeD.addNodeToList(@nodeA)
-=end
+
     threads = []
     uniqueNodes = Array.new([])
 
     i = 0
-    [@nodeA, nodeAA].each do |t|
-      threads[i] = Thread.new(t){
-        NodeTraverser.calculateUniqueNodes(t,i,Array.new([i]))
+    [@nodeA, nodeAA].each do |n|
+      threads[i] = Thread.new(n){
+        NodeTraverser.calculateUniqueNodes(n,i,Array.new([i]))
       }
       i+=1
     end
 
     threads.each{ |t| t.join }
 
-    assert_equal(3,threads[0].value,"Calculation failed")
-    assert_equal(4,threads[1].value,"Calculation failed")
+    assert_equal(4,threads[0].value,"Calculation failed")
+    assert_equal(7,threads[1].value,"Calculation failed")
 
   end
 
   def test_one_node_only
-    omit
-    assert_equal(1,NodeTraverser::Node.calculateUniqueNodes(@nodeD),"Calculation failed")
+    assert_equal(1,NodeTraverser.calculateUniqueNodes(@nodeD),"Calculation failed")
   end
 
   def test_two_nodes_only_with_circular_links
-    omit
     @nodeC.addNodeToList(@nodeD)
     @nodeD.addNodeToList(@nodeC)
-    assert_equal(2,NodeTraverser::Node.calculateUniqueNodes(@nodeC),"Calculation failed")
+    assert_equal(2,NodeTraverser.calculateUniqueNodes(@nodeC),"Calculation failed")
   end
 
   def test_nil_node
-    omit
-    assert_raise(ArgumentError, "node is nil") {NodeTraverser::Node.calculateUniqueNodes(nil)}
+    assert_raise(ArgumentError, "node is nil") {NodeTraverser.calculateUniqueNodes(nil)}
   end
 
 end
