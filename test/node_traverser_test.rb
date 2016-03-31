@@ -82,21 +82,17 @@ class NodeTraverserTest < Test::Unit::TestCase
     @nodeD.addNodeToList(@nodeA)
 
     threads = []
-    uniqueNodes = Array.new([])
-
     i = 0
     [@nodeA, nodeAA].each do |n|
       threads[i] = Thread.new(n){
-        NodeTraverser.calculateUniqueNodes(n,i,Array.new([i]))
+        NodeTraverser.calculateUniqueNodes(n)
       }
       i+=1
     end
-
     threads.each{ |t| t.join }
 
     assert_equal(4,threads[0].value,"Calculation failed")
     assert_equal(7,threads[1].value,"Calculation failed")
-
   end
 
   def test_one_node_only
