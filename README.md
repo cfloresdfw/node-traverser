@@ -36,7 +36,7 @@ ie:
     dNode.addNodeToList(aNode)
 
 
-3. Once the list of nodes is created, use NodeTraverser.calculateUniqueNodes(aNodes) to calculate the number of unique nodes
+3. Once the list of nodes is created, use `NodeTraverser.calculateUniqueNodes(aNodes)` to calculate the number of unique nodes
 
 see node_traverser_test.rb for more specifics.
 
